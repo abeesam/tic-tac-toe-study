@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Live region for screen reader announcements -->
+  <div id="a11yAnnounce" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+  <!-- WELCOME -->
+  <section class="screen active" id="welcomeScreen">
+    <h1>Game</h1>
+    <p>Click to start</p>
+    <button class="btn" type="button" id="startBtn">Start</button>
+  </section>
+
+  <!-- MODE -->
+  <section class="screen" id="modeScreen">
+    <h1 class="title">Compete</h1>
+    <p class="muted">Play with your friends or CPU!</p>
+
+    <div id="modeMainRow">
+      <button class="btn" type="button" id="multiBtn">Multiplayer</button>
+      <button class="btn btn-secondary" type="button" id="aiBtn">Vs AI</button>
+    </div>
+
+    <div id="aiDifficultyPanel" class="hidden bad-difficulty-panel">
+      <p class="bad-difficulty-prompt">pick level</p>
+      <button class="btn bad-difficulty-btn" type="button" id="easyBtn">Easy</button>
+      <button class="btn bad-difficulty-btn" type="button" id="mediumBtn">Medium</button>
+      <button class="btn bad-difficulty-btn" type="button" id="hardBtn">Hard</button>
+      <button class="btn btn-secondary bad-back-btn" type="button" id="backBtn">&lt; back</button>
+    </div>
+
+    <small class="muted small">No personal information is collected.</small>
+  </section>
+
+  <!-- GAME -->
+  <section class="screen" id="gameScreen">
+    <div class="session-score">
+      <span>X:<span id="scoreX">0</span></span>
+      <span>O:<span id="scoreO">0</span></span>
+      <span>D:<span id="scoreD">0</span></span>
+    </div>
+    <div class="board-container">
+      <div class="board" id="board" role="grid" aria-label="Tic Tac Toe board"></div>
+      <svg class="win-line" id="winLine" aria-hidden="true">
+        <line id="winLineElement" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen" id="resultScreen">
+    <div class="result-container">
+      <span id="resultText" class="result-text"></span>
+      <div class="score-inline">
+        <span class="score-label">Score:</span>
+        <span class="score-val">X:<span id="scoreX2">0</span></span>
+        <span class="score-val">O:<span id="scoreO2">0</span></span>
+        <span class="score-val">D:<span id="scoreD2">0</span></span>
+      </div>
+    </div>
+
+    <button class="btn" type="button" id="playAgainBtn">Play Again</button>
+    <button class="btn btn-secondary" type="button" id="quitBtn">Quit</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

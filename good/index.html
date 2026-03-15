@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body data-theme="dark">
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+    🌓
+  </button>
+
+  <!-- Live region for screen reader announcements -->
+  <div id="a11yAnnounce" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+  <!-- WELCOME -->
+  <section class="screen active" id="welcomeScreen">
+    <div class="welcome-content">
+      <h1 class="title welcome-title">Tic Tac Toe</h1>
+      <p class="welcome-subtitle muted">Challenge a friend or take on the AI</p>
+
+      <div class="welcome-logo">
+        <div class="logo-box" aria-hidden="true">
+          <span class="logo-cell x tl">X</span>
+          <span class="logo-cell o tr">O</span>
+          <span class="logo-cell o bl">O</span>
+          <span class="logo-cell x br">X</span>
+        </div>
+      </div>
+
+      <button class="btn btn-cta" type="button" id="welcomeStartBtn">Get Started</button>
+    </div>
+    <div class="welcome-bg-shapes" aria-hidden="true"></div>
+  </section>
+
+  <!-- LOADING -->
+  <section class="screen" id="loadingScreen">
+    <div class="loader" aria-hidden="true"></div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <p class="muted">Loading...</p>
+    <p id="loadingDifficulty" class="muted"></p>
+  </section>
+
+  <!-- MODE -->
+  <section class="screen" id="modeScreen">
+    <div class="mode-content">
+      <div class="mode-icon" aria-hidden="true">
+        <span class="mode-vs">VS</span>
+      </div>
+      
+      <h1 class="title mode-title">Choose Your Battle</h1>
+      <p class="mode-subtitle muted">Who will you face today?</p>
+
+      <div id="modeMainRow" class="mode-buttons">
+        <button class="btn mode-btn" type="button" id="multiBtn">
+          <span class="btn-icon">👥</span>
+          <span class="btn-text">
+            <strong>Play a Friend</strong>
+            <small>Local multiplayer</small>
+          </span>
+        </button>
+        <button class="btn btn-secondary mode-btn" type="button" id="aiMainBtn">
+          <span class="btn-icon">🤖</span>
+          <span class="btn-text">
+            <strong>Challenge AI</strong>
+            <small>Test your skills</small>
+          </span>
+        </button>
+      </div>
+
+      <div id="aiDifficultyPanel" class="hidden">
+        <p class="difficulty-prompt muted">Select difficulty level</p>
+        <button class="btn difficulty-btn" type="button" id="easyBtn">
+          <span class="difficulty-label">😊 Easy</span>
+          <small class="difficulty-desc">Relaxed gameplay</small>
+        </button>
+        <button class="btn difficulty-btn" type="button" id="mediumBtn">
+          <span class="difficulty-label">🎯 Medium</span>
+          <small class="difficulty-desc">Balanced challenge</small>
+        </button>
+        <button class="btn difficulty-btn" type="button" id="hardBtn">
+          <span class="difficulty-label">🔥 Hard</span>
+          <small class="difficulty-desc">Ultimate test</small>
+        </button>
+        <button class="btn btn-secondary" type="button" id="backBtn">← Back</button>
+      </div>
+
+      <small class="muted small privacy-note">🔒 No data collected • Play freely</small>
+    </div>
+    <div class="mode-bg-shapes" aria-hidden="true"></div>
+  </section>
+
+  <!-- GAME -->
+  <section class="screen" id="gameScreen">
+    <div class="game-content">
+      <div class="game-header">
+        <div class="turn-display">
+          <span class="turn-icon" id="turnIcon">❌</span>
+          <div class="turn-info">
+            <h2 id="turnText" class="turn"></h2>
+            <p id="difficultyLabel" class="difficulty-tag muted"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-panel">
+        <div class="score-card" data-player="X">
+          <span class="score-emoji">❌</span>
+          <div class="score-details">
+            <span class="score-name">Player X</span>
+            <span class="score-value" id="scoreX">0</span>
+          </div>
+        </div>
+        <div class="score-card score-draw" data-player="D">
+          <span class="score-emoji">🤝</span>
+          <div class="score-details">
+            <span class="score-name">Draws</span>
+            <span class="score-value" id="scoreD">0</span>
+          </div>
+        </div>
+        <div class="score-card" data-player="O">
+          <span class="score-emoji">⭕</span>
+          <div class="score-details">
+            <span class="score-name">Player O</span>
+            <span class="score-value" id="scoreO">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="board-container">
+        <div class="board" id="board" role="grid" aria-label="Tic Tac Toe board"></div>
+        <svg class="win-line" id="winLine" aria-hidden="true">
+          <line id="winLineElement" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="game-bg-shapes" aria-hidden="true"></div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen" id="resultScreen">
+    <div class="result-content">
+      <div class="result-trophy" id="resultTrophy" aria-hidden="true">🏆</div>
+      
+      <h1 id="resultText" class="result-title"></h1>
+      <p class="result-subtitle muted" id="resultSubtitle">Great game!</p>
+
+      <div class="result-stats">
+        <p class="stats-label muted">Match Statistics</p>
+        <div class="stats-grid">
+          <div class="stat-card stat-x">
+            <span class="stat-icon">❌</span>
+            <div class="stat-info">
+              <span class="stat-value" id="scoreX2">0</span>
+              <span class="stat-name">X Wins</span>
+            </div>
+          </div>
+          <div class="stat-card stat-draw">
+            <span class="stat-icon">🤝</span>
+            <div class="stat-info">
+              <span class="stat-value" id="scoreD2">0</span>
+              <span class="stat-name">Draws</span>
+            </div>
+          </div>
+          <div class="stat-card stat-o">
+            <span class="stat-icon">⭕</span>
+            <div class="stat-info">
+              <span class="stat-value" id="scoreO2">0</span>
+              <span class="stat-name">O Wins</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn result-btn primary-action" type="button" id="playAgainBtn">
+          <span class="btn-icon">🔄</span>
+          <span>Play Again</span>
+        </button>
+        <button class="btn btn-secondary result-btn" type="button" id="quitBtn">
+          <span class="btn-icon">🏠</span>
+          <span>Main Menu</span>
+        </button>
+      </div>
+    </div>
+    <div class="result-bg-shapes" aria-hidden="true"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

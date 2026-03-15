@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-Tac-Toe Study</title>
+  <style>
+    :root {
+      --bg: #f5efe5;
+      --panel: #fffaf2;
+      --text: #1f1a14;
+      --muted: #65584a;
+      --accent-a: #0f766e;
+      --accent-b: #8b5e34;
+      --border: #d7c5ad;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.10), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(139, 94, 52, 0.12), transparent 40%),
+        var(--bg);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .wrap {
+      width: min(760px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 32px;
+      box-shadow: 0 14px 40px rgba(40, 32, 24, 0.10);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    p {
+      margin: 0 0 16px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .links {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      background: #fffdf8;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 8px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .good a { color: var(--accent-a); }
+    .bad a { color: var(--accent-b); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tic-Tac-Toe Interface Comparison</h1>
+    <p>This site contains two playable versions of the dissertation game used for UI/UX comparison.</p>
+    <p>Use the direct links below to open each version.</p>
+
+    <section class="links">
+      <article class="card good">
+        <h2>Version A: Good / High-Fidelity UI</h2>
+        <p>This version includes stronger hierarchy, clearer feedback, and a more polished interface.</p>
+        <a href="./good/">Open Version A</a>
+      </article>
+
+      <article class="card bad">
+        <h2>Version B: Bad / Reduced-Fidelity UI</h2>
+        <p>This version keeps the game functional while reducing layout clarity and interface feedback.</p>
+        <a href="./bad/">Open Version B</a>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
